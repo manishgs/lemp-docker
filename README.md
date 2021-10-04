@@ -1,12 +1,15 @@
+# Docker configuration for LEMP Stack
+
+
 ## Install docker
 
-`sudo apt-get install docker.io docker-compose`
+`sudo apt-get install docker.io docker-compose`.
 
-## run docker
+## Run docker
 
 `docker-composer up -d`
 
-## set app folder in `docker-composer.yml`
+## Set app folder in `docker-composer.yml`
 
 ```
 nginx:
@@ -17,11 +20,11 @@ php
         - ../[PROJECT_DIR_NAME]:/app
 ```
 
-## app server
+## App server
 
 `localhost:8000`
 
-## phpmyadmin
+## To run phpmyadmin
 
 `localhost:8080`
 
@@ -30,6 +33,6 @@ username : root
 password : root
 ```
 
-## run mondodb
+## Run mondodb
 
 `docker run --name mongodb -p 27017:27017 -d mongo:`
