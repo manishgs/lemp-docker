@@ -27,17 +27,9 @@ php
 
 ```
 username : root
-password : manish@yipl
+password : root
 ```
 
 ## run mondodb
 
 `docker run --name mongodb -p 27017:27017 -d mongo:`
-
-## composer install
-
-sh bin/composer install
-
-## php artisan commands
-
-sh bin/artisan $$
