@@ -1,0 +1,36 @@
+nginx:
+  image: "bitnami/nginx"
+  ports:
+    - "8000:8080"
+  links:
+    - php
+  volumes:
+    - ./logs/access.log:/opt/bitnami/nginx/logs/app_access.log
+    - ./logs/error.log:/opt/bitnami/nginx/logs/app_error.log
+    - ./nginx/app.conf:/opt/bitnami/nginx/conf/server_blocks/app.conf:ro
+    - WORKING_DIR:/app:consistent
+php:
+  image: "bitnami/php-fpm:7.0"
+  ports:
+    - "9000:9000"
+  volumes:
+    - WORKING_DIR:/app
+mysql:
+  image: mysql:5.7
+  ports:
+    - "3306:3306"
+  volumes:
+    - ./db-data:/var/lib/mysql
+  environment:
+    - MYSQL_ROOT_PASSWORD=MYSQL_PASS
+phpmyadmin:
+  image: "phpmyadmin/phpmyadmin"
+  restart: always
+  ports:
+    - "8080:80"
+  links:
+    - mysql:mysql
+  environment:
+    MYSQL_USERNAME: root
+    MYSQL_ROOT_PASSWORD: MYSQL_PASS
+    PMA_HOST: mysql
