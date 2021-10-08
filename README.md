@@ -1,11 +1,10 @@
 # Docker configuration for LEMP Stack
 
 
-## Install docker
+## Install docker [https://docs.docker.com/engine/install]
 
 `sudo apt-get install docker.io docker-compose`.
 
-installation documentations [https://docs.docker.com/engine/install]
 
 ## Run docker
 
