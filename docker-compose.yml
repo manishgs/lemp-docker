@@ -5,8 +5,7 @@ nginx:
   links:
     - php
   volumes:
-    - ./logs/access.log:/opt/bitnami/nginx/logs/app_access.log
-    - ./logs/error.log:/opt/bitnami/nginx/logs/app_error.log
+    - ./logs:/opt/bitnami/nginx/logs/
     - ./nginx/app.conf:/opt/bitnami/nginx/conf/server_blocks/app.conf:ro
     - WORKING_DIR:/app:consistent
 php:
@@ -16,13 +15,13 @@ php:
   volumes:
     - WORKING_DIR:/app
 mysql:
-  image: mysql:5.7
+  image: mysql:5.7@sha256:b3b2703de646600b008cbb2de36b70b21e51e7e93a7fca450d2b08151658b2dd
   ports:
     - "3306:3306"
   volumes:
     - ./db-data:/var/lib/mysql
   environment:
-    - MYSQL_ROOT_PASSWORD=MYSQL_PASS
+    - MYSQL_ROOT_PASSWORD=root
 phpmyadmin:
   image: "phpmyadmin/phpmyadmin"
   restart: always
@@ -32,5 +31,5 @@ phpmyadmin:
     - mysql:mysql
   environment:
     MYSQL_USERNAME: root
-    MYSQL_ROOT_PASSWORD: MYSQL_PASS
+    MYSQL_ROOT_PASSWORD: root
     PMA_HOST: mysql
